@@ -1,0 +1,37 @@
+# Node.js / Express
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Compiled files
+build/
+dist/
+*.log
+*.pid
+*.out
+
+# Dependency directories
+/*/node_modules
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Visual Studio Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Node.js / Express specific
+# Logs
+logs/
+*.log
+
+# Debug data
+pids/
+*.pid

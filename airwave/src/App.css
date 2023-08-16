@@ -1,0 +1,136 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.card{
+  display: flex;
+        flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    padding: 20px;
+    width: 324px;
+height: 129px;
+    background-color: #ffff;
+    border-radius: 5px;
+    box-shadow: 3px 5px 6px 2px rgba(0, 0, 0, 0.15);
+    border-left: 2px solid #242424;
+    transition:  all 0.3s ease-in-out ;
+    transform-origin: center;
+}
+.card:hover{
+transform: scale(1.1);
+}
+.card h1 {
+  margin: 0;
+}
+.card p{
+  font-size: 20px;
+  font-weight: 400;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+.Formcontainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 700px;
+  margin: auto;
+
+}
+
+.FormcontainerUpdate{
+  display: flex;
+justify-content: center;
+align-items: center;
+height: 60vh;
+width: 700px;
+margin: auto;
+position: absolute;
+top: 80%;
+bottom: 49%;
+background-color: #efefef;
+transform: translate(-50%,-50%);
+left: 55%;
+padding: 30px;
+border-radius: 10px;
+box-shadow: 8px 5px 10px 5px rgba(0,0,0,0.15);
+
+}
+.hide{
+  display: none;
+}
+.tbContainer  {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  margin: 20px;
+}
+
+.tbContainer input{
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  
+  margin-right: 10px;
+}
+.filterConatiner{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+
+.tbContainer table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  box-shadow: 10px 2px 10px 4px rgba(0, 0, 0, 0.15);
+  margin: 10px;
+}
+
+.tbContainer table th,
+.tbContainer table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+}
+
+.tbContainer table th {
+  background-color: #f5f5f5;
+  font-weight: bold;
+}
+
+.tbContainer tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+
