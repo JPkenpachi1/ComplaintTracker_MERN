@@ -14,7 +14,7 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 // Connect MongoDB at default port 27017.
-mongoose.connect('mongodb://kenpachi:12345@ac-prvdrdy-shard-00-00.bzqvhzl.mongodb.net:27017,ac-prvdrdy-shard-00-01.bzqvhzl.mongodb.net:27017,ac-prvdrdy-shard-00-02.bzqvhzl.mongodb.net:27017/Airwave?ssl=true&replicaSet=atlas-qu9syl-shard-0&authSource=admin&retryWrites=true&w=majority', {
+mongoose.connect('mongodbURl', {
     useNewUrlParser: true,
     
 }, (err) => {
