@@ -86,18 +86,22 @@ const ComplaintGrid = () => {
               </tr>
             </thead>
             <tbody>
-              {filteredData.map((row) => {
-                return (
-                  <tr key={row.id}>
-                    <td>{row.name}</td>
-                    <td>{row.mobile}</td>
-                    <td>{row.category}</td>
-                    <td>{row.description}</td>
-                    <td>{new Date(row.date).toDateString()}</td>
-                    <td>{row.status}</td>
-                  </tr>
-                );
-              })}
+            {filteredData.length === 0 ? (
+      <tr>
+        <td colSpan="6" style={{textAlign:'center'}}>No Data Available</td>
+      </tr>
+    ) : (
+      filteredData.map((row) => (
+        <tr key={row.id}>
+          <td>{row.name}</td>
+          <td>{row.mobile}</td>
+          <td>{row.category}</td>
+          <td>{row.description}</td>
+          <td>{new Date(row.date).toDateString()}</td>
+          <td>{row.status}</td>
+        </tr>
+      ))
+    )}
             </tbody>
           </table>
         </div>

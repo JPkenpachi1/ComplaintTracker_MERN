@@ -348,7 +348,7 @@ const regfetchdata = async()=>{
     >
       <ReceiptIcon /> {/* Use the ReceiptIcon here */}
     </ListItemIcon>
-    <ListItemText primary="Enquiry" sx={{ opacity: 1 }} />
+    <ListItemText primary="All Complaints" sx={{ opacity: 1 }} />
   </IconButton>
 </ListItem>
             

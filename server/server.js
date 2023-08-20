@@ -14,7 +14,7 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 // Connect MongoDB at default port 27017.
-mongoose.connect('mongodbURl', {
+mongoose.connect('mongodb://kenpachi:12345@ac-prvdrdy-shard-00-00.bzqvhzl.mongodb.net:27017,ac-prvdrdy-shard-00-01.bzqvhzl.mongodb.net:27017,ac-prvdrdy-shard-00-02.bzqvhzl.mongodb.net:27017/Airwave?ssl=true&replicaSet=atlas-qu9syl-shard-0&authSource=admin&retryWrites=true&w=majority', {
     useNewUrlParser: true,
     
 }, (err) => {
@@ -25,10 +25,21 @@ mongoose.connect('mongodbURl', {
     }
 });
 //  Schema
+
+
+app.listen(PORT,()=>console.log("server is running "));
 const RegisterSchema= mongoose.Schema({
     name:String,
+    mobile:String, 
     email:String,
-    mobile:String,
+    address:String,
+    alternate:String,
+    date: {
+        type:Date,
+        default:Date.now()
+    },
+   
+
 },{
     timestamps:true
 })
@@ -44,15 +55,15 @@ const RegisterSchema= mongoose.Schema({
     })
 });
 // create data
-app.post("/create",async(req,res)=>{
-   
-    const data = new userModel(req.body);
+app.post('/Register' ,  async(req , res)=>{
+    const data = new userModel(req.body)
     await data.save();
-    res.send({
-        success:true,
-        message:"data saved Succesfully"
-    })
-})
+      res.send({
+          success:true,
+          message:"data saved Succesfully"
+      })
+  
+  });
 //  update method 
 // app.put('/update',async(req,res)=>{
 //     console.log(req.body);
@@ -102,8 +113,6 @@ res.send({
     message:"data deleted  suceesfully ",data:data
 })
 })
-
-app.listen(PORT,()=>console.log("server is running "));
 
 
 //++++++++++++++++++++++++++++++++++ this is the complaint Side server code for inserting the data
