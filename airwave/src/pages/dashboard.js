@@ -38,17 +38,9 @@ import HelpIcon from '@mui/icons-material/Help';
 import UpdateForm from '../Components/UpdateForm';
 import ReceiptIcon from '@mui/icons-material/Receipt';
 axios.defaults.baseURL="http://localhost:8080"
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
 
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
+
+
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -212,10 +204,12 @@ fetchdata()
 }
 //  this is a registered user code 
 const [regDataFetch,setregDataFetch]=useState([]);
+const [ucount,setucount] = useState()
 const regfetchdata = async()=>{
   try {
        const response = await axios.get("/users");
        setregDataFetch(response.data.data);
+       setucount(response.data.data.length)
       
      } catch (error) {
        console.error("Error fetching data:", error);
@@ -375,7 +369,7 @@ const regfetchdata = async()=>{
       />
       <Card
         title="Registered Users"
-        description="100"
+        description={ucount}
         borderColor="#71b9f6"
       />
          
@@ -463,34 +457,54 @@ const regfetchdata = async()=>{
        Registered User's
       </Typography>
       <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+      <Table sx={{ minWidth: 650 }} style={{
+        width:'700px'
+      }} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
+           
+            <TableCell align="right" sx={{textAlign:'center'}}>Name</TableCell>
+            <TableCell align="right"  sx={{textAlign:'center'}}>Email </TableCell>
+            <TableCell align="right"  sx={{textAlign:'center'}}>Mobile</TableCell>
+            <TableCell align="right"  sx={{textAlign:'center'}}>Alternate NO.</TableCell>
+            <TableCell align="right"  sx={{textAlign:'center'}}>Date</TableCell>
+            <TableCell align="right"  sx={{textAlign:'center'}}>Address</TableCell>
+           
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow
-              key={row.name}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
-            </TableRow>
-          ))}
+        {regDataFetch.map((row) => {
+    return (
+      <TableRow
+      key={row.category}
+      sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+    >
+      <TableCell align="right" sx={{ textAlign: 'center' }}>
+        {row.name}
+      </TableCell>
+      <TableCell align="right" sx={{ textAlign: 'center' }}>
+        {row.email}
+      </TableCell>
+      <TableCell align="right" sx={{ textAlign: 'center' }}>
+        {row.mobile}
+      </TableCell>
+      <TableCell align="right" sx={{ textAlign: 'center' }}>
+        {row.alternate}
+      </TableCell>
+      <TableCell align="right" sx={{ textAlign: 'center' }}>
+        {row.date}
+      </TableCell>
+      <TableCell align="right" sx={{ textAlign: 'center' }}>
+        {row.address}
+      </TableCell>
+    </TableRow>
+  );
+})}
+
         </TableBody>
       </Table>
-    </TableContainer>
+    
+    </TableContainer> 
 </div>
 
 </Stack>
