@@ -33,7 +33,7 @@ const UpdateForm = ({ name, mobile, category, description,status,_id,onClose}) =
 
     e.preventDefault();
     try {
-      const data = axios.put("/updateStatus/"+formData._id,formData)
+      const data =  await axios.put("/updateStatus/"+formData._id,formData)
       alert(data.data.message);
     } catch (error) {
       alert(error)

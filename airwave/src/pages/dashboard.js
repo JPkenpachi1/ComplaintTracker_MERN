@@ -219,7 +219,19 @@ const regfetchdata = async()=>{
   
  useEffect(()=>{
    regfetchdata();
+   resFetchData();
  },[])
+
+//  this code section for getting the resolved complaints data 
+const [resCount,setresCount]=useState(0)
+const resFetchData = async ()=>{
+  try {
+    const response= await axios.get('/resolvedComp');
+    setresCount(response.data.data.length);
+  } catch (error) {
+    
+  }
+}
 
     return (
       <Box sx={{ display: 'flex' }}>
@@ -254,29 +266,43 @@ const regfetchdata = async()=>{
           <Divider />
           <List>
            
-            <ListItem disablePadding>
-        <IconButton
-          component={Link}
-          to="/register"
-          sx={{
-            minHeight: 48,
-            justifyContent: 'center',
-            px: 2.5,
-          }}
-        >
-          <ListItemIcon
-            sx={{
-              minWidth: 0,
-              mr: 3,
-              justifyContent: 'center',
-            }}
-          >
-            <PersonAddIcon />
-          </ListItemIcon>
-          <ListItemText primary="Register" sx={{ opacity: 1 }} />
-        </IconButton>
-      </ListItem>
-      <ListItem  disablePadding sx={{ display: 'block' }}>
+          <ListItem disablePadding sx={{ display: 'block',
+        '&:hover': {
+          borderRadius: '10px',
+          backgroundColor: '#efefef',
+          color: '#242424',
+        }, }}>
+  <IconButton
+    component={Link}
+    to="/register"
+    sx={{
+      minHeight: 48,
+      justifyContent: 'center',
+      px: 2.5,
+      '&:hover':{
+        backgroundColor:"transparent"
+      }
+      
+    }}
+  >
+    <ListItemIcon
+      sx={{
+        minWidth: 0,
+        mr: 3,
+        justifyContent: 'center',
+      }}
+    >
+      <PersonAddIcon />
+    </ListItemIcon>
+    <ListItemText primary="Register" sx={{ opacity: 1 ,}} />
+  </IconButton>
+</ListItem>
+
+      <ListItem  disablePadding sx={{ display: 'block' ,'&:hover': {
+          borderRadius: '10px',
+          backgroundColor: '#efefef',
+          color: '#242424',
+        },}}>
       <IconButton
         component={Link}
         to="/Sample"
@@ -284,6 +310,10 @@ const regfetchdata = async()=>{
           minHeight: 48,
           justifyContent: 'center',
           px: 2.5,
+          '&:hover':{
+            backgroundColor:"transparent"
+          }
+          
         }}
       >
         <ListItemIcon
@@ -298,7 +328,11 @@ const regfetchdata = async()=>{
         <ListItemText primary="Complaint" sx={{ opacity: 1 }} />
       </IconButton>
     </ListItem>
-    <ListItem disablePadding sx={{ display: 'block' }}>
+    <ListItem disablePadding sx={{ display: 'block' ,'&:hover': {
+          borderRadius: '10px',
+          backgroundColor: '#efefef',
+          color: '#242424',
+        },}}>
     <IconButton
       component={Link}
       to="/Enquiry"
@@ -306,6 +340,10 @@ const regfetchdata = async()=>{
         minHeight: 48,
         justifyContent: 'center',
         px: 2.5,
+        '&:hover':{
+          backgroundColor:"transparent"
+        }
+        
       }}
     >
       <ListItemIcon
@@ -323,7 +361,11 @@ const regfetchdata = async()=>{
           </List>
           <Divider />
           <List>
-          <ListItem disablePadding sx={{ display: 'block' }}>
+          <ListItem disablePadding sx={{ display: 'block' ,'&:hover': {
+          borderRadius: '10px',
+          backgroundColor: '#efefef',
+          color: '#242424',
+        },}}>
   <IconButton
     component={Link}
     to="/ComplaintGrid"
@@ -331,6 +373,10 @@ const regfetchdata = async()=>{
       minHeight: 48,
       justifyContent: 'center',
       px: 2.5,
+      '&:hover':{
+        backgroundColor:"transparent"
+      }
+      
     }}
   >
     <ListItemIcon
@@ -363,7 +409,7 @@ const regfetchdata = async()=>{
       />
       <Card
         title="Resolved Complaints"
-        description="200"
+        description={resCount}
         className="another-card"
         borderColor="#00FF00"
       />
@@ -421,7 +467,7 @@ const regfetchdata = async()=>{
                 {row.mobile}
               </TableCell>
               <TableCell align="right" sx={{ textAlign: 'center' }}>
-                {row.date}
+              {new Date(row.date).toDateString()}
               </TableCell>
               <TableCell align="right" sx={{ textAlign: 'center' }}>
                 {row.description}
@@ -492,7 +538,7 @@ const regfetchdata = async()=>{
         {row.alternate}
       </TableCell>
       <TableCell align="right" sx={{ textAlign: 'center' }}>
-        {row.date}
+      {new Date(row.date).toDateString()}
       </TableCell>
       <TableCell align="right" sx={{ textAlign: 'center' }}>
         {row.address}

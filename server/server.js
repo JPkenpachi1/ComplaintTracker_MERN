@@ -182,7 +182,7 @@ app.post('/empCreate', async(req,res)=>{
  })
 });
  
-// +++++++++++++++++++++++++++++++++++++ this is enquiores code ++++++++++++++++++++++++++++++++++++++++++++++++++++
+// +++++++++++++++++++++++++++++++++++++ this is enquires code ++++++++++++++++++++++++++++++++++++++++++++++++++++
 const engSchema = mongoose.Schema({
      name:String,
     mobile:String,
@@ -276,10 +276,14 @@ app.put('/updateStatus/:complaintId', async (req, res) => {
       await complaint.save();
   
       // Insert into resolvedComplaints
-      const resolvedComplaint = new resolvedComplaintsModel(complaint.toJSON());
-      await resolvedComplaint.save();
-  
-      return res.json({ message: 'Status updated and inserted into resolvedComplaints' });
+      if (newStatus === 'solved') {
+        // Insert into resolvedComplaints
+        const resolvedComplaint = new resolvedComplaintsModel(complaint.toJSON());
+        await resolvedComplaint.save();
+        return res.json({ message: 'Status updated and inserted into resolvedComplaints' });
+      } else {
+        return res.json({ message: 'Status updated but not inserted into resolvedComplaints' });
+      }
     } catch (error) {
         console.log(error)
       return res.status(500).json({ error: 'Internal Server Error' });
@@ -293,4 +297,4 @@ app.get('/resolvedComp' , async(req,res)=>{
         message:'Sucess',
         data:data
     })
-})
+})  
